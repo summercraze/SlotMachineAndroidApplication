@@ -1,0 +1,105 @@
+package com.example.slotmachine;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+public class GameResult extends Activity {
+	
+	private TextView textViewSevens;
+	private TextView textView3Cherries;
+	private TextView textViewBars;
+	private TextView textView2Cherries;
+	private TextView textView1Cherry;
+	private TextView textViewTotalWins;
+	private TextView textViewMoney;
+
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_game_result);
+		textViewSevens = (TextView)findViewById(R.id.textViewSevens);
+		textView3Cherries = (TextView)findViewById(R.id.textView3Cherries);
+		textViewBars = (TextView)findViewById(R.id.textViewBars);
+		textView2Cherries = (TextView)findViewById(R.id.textView2Cherries);
+		textView1Cherry = (TextView)findViewById(R.id.textView1Cherry);
+		textViewTotalWins = (TextView)findViewById(R.id.textViewTotalWins);
+		textViewMoney = (TextView)findViewById(R.id.textViewMoney);
+		// Get the data from GamePlay.java
+		Bundle extras = getIntent().getExtras();
+		// Handle the senvensCount data
+		int sevensCount = extras.getInt("sevens");
+		if(sevensCount == 1){
+			textViewSevens.setText("won " + sevensCount + " time");
+		} else {
+			textViewSevens.setText("won " + sevensCount + " times");
+		}
+		// Handle the barsCount data
+		int barsCount = extras.getInt("bars");
+		if(barsCount == 1){
+			textViewBars.setText("won " + barsCount + " time");
+		} else {
+			textViewBars.setText("won " + barsCount + " times");
+		}
+		// Handle the cherry3Count data
+		int cherry3Count = extras.getInt("cherry3");
+		if(cherry3Count == 1){
+			textView3Cherries.setText("won " + cherry3Count + " time");
+		} else {
+			textView3Cherries.setText("won " + cherry3Count + " times");
+		}
+		// Handle the cherry2Count data
+		int cherry2Count = extras.getInt("cherry2"); 
+		if(cherry2Count == 1){
+			textView2Cherries.setText("won " + cherry2Count + " time");
+		} else {
+			textView2Cherries.setText("won " + cherry2Count + " times");
+		}
+		// Handle the cherry1Count data
+		int cherry1Count = extras.getInt("cherry1");
+		if(cherry1Count == 1){
+			textView1Cherry.setText("won " + cherry1Count + " time");
+		} else {
+			textView1Cherry.setText("won " + cherry1Count + " times");
+		}
+		// Handle the totalNumOfWins data
+		int totalNumOfWins = extras.getInt("NumOfWins");
+		if(totalNumOfWins == 1){
+			textViewTotalWins.setText(textViewTotalWins.getText().toString() + totalNumOfWins + " time");
+		} else {
+			textViewTotalWins.setText(textViewTotalWins.getText().toString() + totalNumOfWins + " times");
+		}
+		int moneyYouHave = extras.getInt("startingMoney");
+		textViewMoney.setText(textViewMoney.getText().toString() + moneyYouHave);
+		
+	}
+	
+	public void quitResult(View view){
+		this.finish();     
+	}
+
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.game_result, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+}
